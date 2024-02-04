@@ -14,26 +14,6 @@ BoundedContext RealStateServiceContext implements RealEstateInformationManagemen
 	responsibilities = "Gestionar la información inmobiliaria, incluyendo propiedades, listados, transacciones, inquilinos, análisis de mercado y datos."
 	implementationTechnology = "DDD"
 	
-	Aggregate CustomerFrontend {
-		owner = CustomerFrontendTeam
-		
-		Entity CustomerAddressChange {
-			aggregateRoot
-			
-			- UserAccount issuer
-			Address changedAddress
-		}
-	}
-	Aggregate Acounts {
-		owner = CustomerBackendTeam
-		
-		Entity UserAccount {
-			aggregateRoot
-			
-			String username
-			Customer accountCustomer
-		}
-	}
 }
 
 
