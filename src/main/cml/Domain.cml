@@ -26,7 +26,7 @@ Domain RealEstateInformationManagement {
 
     Entity Property {
       String address
-      String type
+      String type_property
       String status
     }
   }
@@ -107,4 +107,100 @@ Domain RealEstateInformationManagement {
       String enrichmentSource
     }
   }
+}
+
+UserStory CreatePropertyInfo {
+  As an "Property record"
+    I want to "create" a "Property" with its "address" "type_property" "status" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdatePropertyInfo {
+  As an "Property record"
+    I want to "update" a "Property" with its "address" "type_property" "status" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory CreateListing {
+  As an "Property record"
+    I want to "create" a "Listing" with its "propertyId" "listingDetails" "price" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateListing {
+  As an "Property record"
+    I want to "update" a "Listing" with its "propertyId" "listingDetails" "price" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory RecordTransaction {
+  As an "Property record"
+    I want to "record" a "Transaction" with its "transactionId" "propertyId" "transactionDetails" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateTransaction {
+  As an "Property record"
+    I want to "update" a "Transaction" with its "transactionId" "propertyId" "transactionDetails" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory CreateTenantProfile {
+  As an "Property record"
+    I want to "create" a "Tenant" with its "tenantId" "name" "leaseDetails" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateTenantProfile {
+  As an "Property record"
+    I want to "update" a "Tenant" with its "tenantId" "name" "leaseDetails" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory CreateComparativeReport {
+  As an "Property record"
+    I want to "create" a "ComparativeReport" with its "reportId" "analysisDetails" "date" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateComparativeReport {
+  As an "Property record"
+    I want to "update" a "ComparativeReport" with its "reportId" "analysisDetails" "date" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory CreateMarketAnalysis {
+  As an "Property record"
+    I want to "create" a "MarketAnalysis" with its "analysisId" "trends" "insights" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateMarketAnalysis {
+  As an "Property record"
+    I want to "update" a "MarketAnalysis" with its "analysisId" "trends" "insights" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory ProcessData {
+  As an "Property record"
+    I want to "process" a "DataRecord" with its "recordId" "source" "content" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory ValidateData {
+  As an "Property record"
+    I want to "validate" a "DataRecord" with its "recordId" "source" "content" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory EnrichData {
+  As an "Property record"
+    I want to "enrich" a "EnrichedData" with its "dataId" "enrichedContent" "enrichmentSource" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory VerifyDataIntegrity {
+  As an "Property record"
+    I want to "verify" a "EnrichedData" with its "dataId" "enrichedContent" "enrichmentSource" 
+  so that "I can have a record of the properties in the system"
 }
