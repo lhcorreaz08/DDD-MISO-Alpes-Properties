@@ -20,6 +20,7 @@ ContextMap DDDSampleMap {
 
 }
 
+
 /* The original booking application context */
 BoundedContext CargoBookingContext {
 	Module cargo {
