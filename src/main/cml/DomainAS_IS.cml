@@ -16,54 +16,26 @@ BoundedContext RealStateServiceContext implements RealEstateInformationManagemen
 	
 }
 
-Domain RealEstateInformationManagement {
-  domainVisionStatement = "Ser la fuente líder y confiable de información detallada y actualizada en el mercado inmobiliario comercial, facilitando decisiones estratégicas informadas para nuestros clientes."
 
-  Subdomain FieldResearchDomain supports CreatePropertyInfo, UpdatePropertyInfo {
-    type = CORE_DOMAIN
-    domainVisionStatement = "Proporcionar la información más precisa y actualizada de las propiedades comerciales, asegurando una base sólida para el análisis de mercado y decisiones de inversión."
 
-    Entity Property {
-      String address
-      String type_property
-      String status
+
+
+
+Domain ReserarchDomain {
+    domainVisionStatement = "Investigación de Campo, Comparativos de Ventas y Análisis y Tendencias del Mercado. Este dominio se enfoca en recopilar y analizar datos para proporcionar información actualizada y predicciones sobre el mercado inmobiliario comercial."
+
+    Subdomain FieldResearchDomain supports CreatePropertyInfo, UpdatePropertyInfo {
+      type = CORE_DOMAIN
+      domainVisionStatement = "Proporcionar la información más precisa y actualizada de las propiedades comerciales, asegurando una base sólida para el análisis de mercado y decisiones de inversión."
+
+      Entity Property {
+        String address
+        String type_property
+        String status
+      }
     }
-  }
 
-  Subdomain PropertyListingsDomain supports CreateListing, UpdateListing {
-    type = SUPPORTING_DOMAIN
-    domainVisionStatement = "Mantener una base de datos exhaustiva y accesible de propiedades comerciales, optimizando el proceso de búsqueda y selección para nuestros clientes."
-
-    Entity Listing {
-      String propertyId
-      String listingDetails
-      String price
-    }
-  }
-
-  Subdomain LeaseSaleTransactionsDomain supports RecordTransaction, UpdateTransaction {
-    type = CORE_DOMAIN
-    domainVisionStatement = "Ofrecer un análisis detallado de las tendencias de arrendamiento y venta, proporcionando insights clave para estrategias de inversión y desarrollo."
-
-    Entity Transaction {
-      String transactionId
-      String propertyId
-      String transactionDetails
-    }
-  }
-
-  Subdomain TenantInformationDomain supports CreateTenantProfile, UpdateTenantProfile {
-    type = SUPPORTING_DOMAIN
-    domainVisionStatement = "Asegurar la veracidad y relevancia de la información de inquilinos para mejorar la evaluación de riesgos y oportunidades en el mercado inmobiliario."
-
-    Entity Tenant {
-      String tenantId
-      String name
-      String leaseDetails
-    }
-  }
-
-  Subdomain SalesComparativesDomain supports CreateComparativeReport, UpdateComparativeReport {
+    Subdomain SalesComparativesDomain supports CreateComparativeReport, UpdateComparativeReport {
     type = CORE_DOMAIN
     domainVisionStatement = "Proveer comparaciones de mercado detalladas y contextualizadas, impulsando decisiones de inversión basadas en datos."
 
@@ -85,27 +57,77 @@ Domain RealEstateInformationManagement {
     }
   }
 
-  Subdomain DataCaptureProcessingDomain supports ProcessData, ValidateData {
-    type = GENERIC_SUBDOMAIN
-    domainVisionStatement = "Garantizar la máxima eficiencia y precisión en el procesamiento de datos, apoyando todas las operaciones y análisis de la empresa."
 
-    Entity DataRecord {
-      String recordId
-      String source
-      String content
+}
+
+Domain DataTechnologyDomain {
+
+    domainVisionStatement = "Captura, Procesamiento y Enriquecimiento de Datos. Este dominio se centra en la infraestructura de datos y operaciones para garantizar la eficiencia y precisión de la información."
+
+}
+
+Domain OperationsDomain {
+
+    domainVisionStatement = "Este dominio maneja la base de datos de propiedades y la información relevante de los inquilinos para facilitar las operaciones inmobiliarias."
+
+      Subdomain PropertyListingsDomain supports CreateListing, UpdateListing {
+      type = SUPPORTING_DOMAIN
+      domainVisionStatement = "Mantener una base de datos exhaustiva y accesible de propiedades comerciales, optimizando el proceso de búsqueda y selección para nuestros clientes."
+
+      Entity Listing {
+        String propertyId
+        String listingDetails
+        String price
+      }
+    }
+
+      Subdomain TenantInformationDomain supports CreateTenantProfile, UpdateTenantProfile {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Asegurar la veracidad y relevancia de la información de inquilinos para mejorar la evaluación de riesgos y oportunidades en el mercado inmobiliario."
+
+    Entity Tenant {
+      String tenantId
+      String name
+      String leaseDetails
     }
   }
 
-  Subdomain DataEnrichmentDomain supports EnrichData, VerifyDataIntegrity {
-    type = GENERIC_SUBDOMAIN
-    domainVisionStatement = "Enriquecer continuamente nuestra base de datos, mejorando la calidad y profundidad de la información disponible para análisis y toma de decisiones."
 
-    Entity EnrichedData {
-      String dataId
-      String enrichedContent
-      String enrichmentSource
+}
+
+Domain SalesDomain {
+  
+      domainVisionStatement = "Este dominio se dedica a la gestión y análisis de todas las transacciones de compra y alquiler, proporcionando insights clave para decisiones estratégicas."
+
+      Subdomain LeaseSaleTransactionsDomain supports RecordTransaction, UpdateTransaction {
+      type = CORE_DOMAIN
+      domainVisionStatement = "Ofrecer un análisis detallado de las tendencias de arrendamiento y venta, proporcionando insights clave para estrategias de inversión y desarrollo."
+
+      Entity Transaction {
+        String transactionId
+        String propertyId
+        String transactionDetails
+      }
     }
-  }
+
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 UserStory CreatePropertyInfo {
