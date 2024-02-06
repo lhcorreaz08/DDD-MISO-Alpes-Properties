@@ -1,21 +1,34 @@
 
 /* This is a sample model for a real estate information management system. It is a simplified version of a real-world system, and it is used to demonstrate the capabilities of the Bounded Context DSL. */
 ContextMap {
-	contains RealStateServiceContext
+  state AS_IS
+	contains FieldResearchContext, TransactionalDataContext, DataAuditContext, SalesContext
 
 }
 
-/* With a right-click on the 'CustomerSelfServiceContext' bounded context you can execute the 'Split Bounded Context by Owners' refactoring.
- * It will split the existing bounded context according to the two owning teams 'CustomerBackendTeam' and 'CustomerFrontendTeam'.
- */
-BoundedContext RealStateServiceContext implements ReserarchDomain {
-	type = APPLICATION
-	domainVisionStatement = "Proporcionar una plataforma integral para la gestión de información inmobiliaria, ofreciendo datos precisos y actualizados para la toma de decisiones estratégicas."
-	responsibilities = "Gestionar la información inmobiliaria, incluyendo propiedades, listados, transacciones, inquilinos, análisis de mercado y datos."
-	implementationTechnology = "DDD"
-	
+BoundedContext FieldResearchContext implements ReserarchDomain{
+  type = TEAM
+  domainVisionStatement = "Obtener datos precisos y completos sobre propiedades comerciales mediante la recopilación manual, garantizando la integridad y la calidad de la información."
+  responsibilities = "Recopilar información detallada sobre propiedades comerciales, incluyendo parcelas, lotes, edificios y detalles como cantidad de pisos, áreas de las oficinas y organización, a través de investigadores de campo."
 }
 
+BoundedContext TransactionalDataContext implements DataTechnologyDomain {
+  type = APPLICATION
+  domainVisionStatement = "Registrar y gestionar los datos obtenidos de forma automatica por parte de las herramientas automatizadas low code de servicios de geolocalizacion publicos o de servicios gubernamentales publicos recolectados previamente por el equipo de CountryContext"
+  responsibilities = "Complementa y popula la informacion a partir de diferentes servicios externos"
+}
+
+BoundedContext DataAuditContext implements OperationsDomain {
+  type = APPLICATION
+  domainVisionStatement = "Garantizar la calidad y la confiabilidad de los datos almacenados mediante auditorías sistemáticas, identificando y corrigiendo discrepancias para mantener la integridad del sistema."
+  responsibilities = "Revisar la información almacenada de forma automatizada para verificar su confiabilidad, identificar posibles errores y corregir discrepancias para mantener la integridad del sistema de datos."
+}
+
+BoundedContext SalesContext implements SalesDomain {
+  type = TEAM
+  domainVisionStatement = "Proporcionar comparativas de mercado detalladas y contextualizadas para impulsar decisiones de inversión basadas en datos."
+  responsibilities = "Proporcionar comparativas de mercado detalladas y contextualizadas para respaldar decisiones de inversión basadas en datos, incluyendo análisis de ventas y tendencias del mercado."
+}
 
 
 
