@@ -64,6 +64,28 @@ Domain DataTechnologyDomain {
 
     domainVisionStatement = "Captura, Procesamiento y Enriquecimiento de Datos. Este dominio se centra en la infraestructura de datos y operaciones para garantizar la eficiencia y precisión de la información."
 
+    Subdomain DataCaptureProcessingDomain supports ProcessData, ValidateData {
+    type = GENERIC_SUBDOMAIN
+    domainVisionStatement = "Garantizar la máxima eficiencia y precisión en el procesamiento de datos, apoyando todas las operaciones y análisis de la empresa."
+
+    Entity DataRecord {
+      String recordId
+      String source
+      String content
+    }
+  }
+
+  Subdomain DataEnrichmentDomain supports EnrichData, VerifyDataIntegrity {
+    type = GENERIC_SUBDOMAIN
+    domainVisionStatement = "Enriquecer continuamente nuestra base de datos, mejorando la calidad y profundidad de la información disponible para análisis y toma de decisiones."
+
+    Entity EnrichedData {
+      String dataId
+      String enrichedContent
+      String enrichmentSource
+    }
+  }
+
 }
 
 Domain OperationsDomain {
