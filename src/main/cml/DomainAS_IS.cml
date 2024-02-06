@@ -16,7 +16,6 @@ BoundedContext RealStateServiceContext implements RealEstateInformationManagemen
 	
 }
 
-
 Domain RealEstateInformationManagement {
   domainVisionStatement = "Ser la fuente líder y confiable de información detallada y actualizada en el mercado inmobiliario comercial, facilitando decisiones estratégicas informadas para nuestros clientes."
 

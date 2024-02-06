@@ -1,0 +1,244 @@
+
+
+/* This is a sample model for a real estate information management system. It is a simplified version of a real-world system, and it is used to demonstrate the capabilities of the Bounded Context DSL. */
+ContextMap {
+	contains RealStateServiceContext
+
+}
+
+/* With a right-click on the 'CustomerSelfServiceContext' bounded context you can execute the 'Split Bounded Context by Owners' refactoring.
+ * It will split the existing bounded context according to the two owning teams 'CustomerBackendTeam' and 'CustomerFrontendTeam'.
+ */
+BoundedContext RealStateServiceContext implements RealEstateInformationManagement {
+	type = APPLICATION
+	domainVisionStatement = "Proporcionar una plataforma integral para la gestión de información inmobiliaria, ofreciendo datos precisos y actualizados para la toma de decisiones estratégicas."
+	responsibilities = "Gestionar la información inmobiliaria, incluyendo propiedades, listados, transacciones, inquilinos, análisis de mercado y datos."
+	implementationTechnology = "DDD"
+	
+}
+
+//AS-IS Bundle Contexts
+BoundedContext FieldResearchContext {
+  type = TEAM
+	
+}
+
+BoundedContext TransactionalDataContext {
+	type = APPLICATION
+}
+
+BoundedContext DataAuditContext {
+  type = APPLICATION
+	
+}
+
+BoundedContext SalesContext {
+  type = TEAM
+	
+}
+
+BoundedContext ManagementContext {
+  type = TEAM
+
+}
+
+//TOBE
+
+BoundedContext CountryContext {
+  type = TEAM
+
+}
+
+BoundedContext TimeZoneManagementContext {
+  type = TEAM
+
+}
+
+
+Domain RealEstateInformationManagement {
+  domainVisionStatement = "Ser la fuente líder y confiable de información detallada y actualizada en el mercado inmobiliario comercial, facilitando decisiones estratégicas informadas para nuestros clientes."
+
+  Subdomain FieldResearchDomain supports CreatePropertyInfo, UpdatePropertyInfo {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Proporcionar la información más precisa y actualizada de las propiedades comerciales, asegurando una base sólida para el análisis de mercado y decisiones de inversión."
+
+    Entity Property {
+      String address
+      String type_property
+      String status
+    }
+  }
+
+  Subdomain PropertyListingsDomain supports CreateListing, UpdateListing {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Mantener una base de datos exhaustiva y accesible de propiedades comerciales, optimizando el proceso de búsqueda y selección para nuestros clientes."
+
+    Entity Listing {
+      String propertyId
+      String listingDetails
+      String price
+    }
+  }
+
+  Subdomain LeaseSaleTransactionsDomain supports RecordTransaction, UpdateTransaction {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Ofrecer un análisis detallado de las tendencias de arrendamiento y venta, proporcionando insights clave para estrategias de inversión y desarrollo."
+
+    Entity Transaction {
+      String transactionId
+      String propertyId
+      String transactionDetails
+    }
+  }
+
+  Subdomain TenantInformationDomain supports CreateTenantProfile, UpdateTenantProfile {
+    type = SUPPORTING_DOMAIN
+    domainVisionStatement = "Asegurar la veracidad y relevancia de la información de inquilinos para mejorar la evaluación de riesgos y oportunidades en el mercado inmobiliario."
+
+    Entity Tenant {
+      String tenantId
+      String name
+      String leaseDetails
+    }
+  }
+
+  Subdomain SalesComparativesDomain supports CreateComparativeReport, UpdateComparativeReport {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Proveer comparaciones de mercado detalladas y contextualizadas, impulsando decisiones de inversión basadas en datos."
+
+    Entity ComparativeReport {
+      String reportId
+      String analysisDetails
+      String date
+    }
+  }
+
+  Subdomain MarketAnalysisTrendsDomain supports CreateMarketAnalysis, UpdateMarketAnalysis {
+    type = CORE_DOMAIN
+    domainVisionStatement = "Ser líderes en el análisis de tendencias del mercado inmobiliario, ofreciendo predicciones y perspectivas valiosas para nuestros clientes."
+
+    Entity MarketAnalysis {
+      String analysisId
+      String trends
+      String insights
+    }
+  }
+
+  Subdomain DataCaptureProcessingDomain supports ProcessData, ValidateData {
+    type = GENERIC_SUBDOMAIN
+    domainVisionStatement = "Garantizar la máxima eficiencia y precisión en el procesamiento de datos, apoyando todas las operaciones y análisis de la empresa."
+
+    Entity DataRecord {
+      String recordId
+      String source
+      String content
+    }
+  }
+
+  Subdomain DataEnrichmentDomain supports EnrichData, VerifyDataIntegrity {
+    type = GENERIC_SUBDOMAIN
+    domainVisionStatement = "Enriquecer continuamente nuestra base de datos, mejorando la calidad y profundidad de la información disponible para análisis y toma de decisiones."
+
+    Entity EnrichedData {
+      String dataId
+      String enrichedContent
+      String enrichmentSource
+    }
+  }
+}
+
+UserStory CreatePropertyInfo {
+  As an "Property record"
+    I want to "create" a "Property" with its "address" "type_property" "status" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdatePropertyInfo {
+  As an "Property record"
+    I want to "update" a "Property" with its "address" "type_property" "status" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory CreateListing {
+  As an "Property record"
+    I want to "create" a "Listing" with its "propertyId" "listingDetails" "price" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateListing {
+  As an "Property record"
+    I want to "update" a "Listing" with its "propertyId" "listingDetails" "price" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory RecordTransaction {
+  As an "Property record"
+    I want to "record" a "Transaction" with its "transactionId" "propertyId" "transactionDetails" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateTransaction {
+  As an "Property record"
+    I want to "update" a "Transaction" with its "transactionId" "propertyId" "transactionDetails" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory CreateTenantProfile {
+  As an "Property record"
+    I want to "create" a "Tenant" with its "tenantId" "name" "leaseDetails" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateTenantProfile {
+  As an "Property record"
+    I want to "update" a "Tenant" with its "tenantId" "name" "leaseDetails" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory CreateComparativeReport {
+  As an "Property record"
+    I want to "create" a "ComparativeReport" with its "reportId" "analysisDetails" "date" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateComparativeReport {
+  As an "Property record"
+    I want to "update" a "ComparativeReport" with its "reportId" "analysisDetails" "date" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory CreateMarketAnalysis {
+  As an "Property record"
+    I want to "create" a "MarketAnalysis" with its "analysisId" "trends" "insights" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory UpdateMarketAnalysis {
+  As an "Property record"
+    I want to "update" a "MarketAnalysis" with its "analysisId" "trends" "insights" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory ProcessData {
+  As an "Property record"
+    I want to "process" a "DataRecord" with its "recordId" "source" "content" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory ValidateData {
+  As an "Property record"
+    I want to "validate" a "DataRecord" with its "recordId" "source" "content" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory EnrichData {
+  As an "Property record"
+    I want to "enrich" a "EnrichedData" with its "dataId" "enrichedContent" "enrichmentSource" 
+  so that "I can have a record of the properties in the system"
+}
+
+UserStory VerifyDataIntegrity {
+  As an "Property record"
+    I want to "verify" a "EnrichedData" with its "dataId" "enrichedContent" "enrichmentSource" 
+  so that "I can have a record of the properties in the system"
+}
